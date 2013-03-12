@@ -162,13 +162,28 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BikeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RideController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303121534068_InitialCreate.cs" />
+    <Compile Include="Migrations\201303121534068_InitialCreate.Designer.cs">
+      <DependentUpon>201303121534068_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303121632200_RideModel.cs" />
+    <Compile Include="Migrations\201303121632200_RideModel.Designer.cs">
+      <DependentUpon>201303121632200_RideModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Bike.cs" />
+    <Compile Include="Models\Ride.cs" />
+    <Compile Include="Models\RideContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RideViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -281,12 +296,30 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Bike\Index.cshtml" />
+    <Content Include="Views\Bike\Details.cshtml" />
+    <Content Include="Views\Bike\Create.cshtml" />
+    <Content Include="Views\Bike\Edit.cshtml" />
+    <Content Include="Views\Bike\Delete.cshtml" />
+    <Content Include="Views\Ride\Index.cshtml" />
+    <Content Include="Views\Ride\Details.cshtml" />
+    <Content Include="Views\Ride\Create.cshtml" />
+    <Content Include="Views\Ride\Edit.cshtml" />
+    <Content Include="Views\Ride\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201303121534068_InitialCreate.resx">
+      <DependentUpon>201303121534068_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303121632200_RideModel.resx">
+      <DependentUpon>201303121632200_RideModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
