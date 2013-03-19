@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EdsBikeRides.Models;
+using EdsBikeRides.ViewModels;
 
 namespace EdsBikeRides.Controllers
 {
@@ -63,12 +64,23 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Ride ride = db.Rides.Find(id);
-            if (ride == null)
+            RideViewModel rideViewModel = new RideViewModel();
+            rideViewModel.Ride = db.Rides.Find(id);
+            IEnumerable<SelectListItem> selectList =
+                from bikes in db.Bikes.ToList()
+                select new SelectListItem
+                {
+                    Selected = (bikes.Id == rideViewModel.Ride.Bike.Id),
+                    Text = bikes.Name,
+                    Value = bikes.Id.ToString()
+                };
+            rideViewModel.Bikes = selectList;
+
+            if (rideViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(ride);
+            return View(rideViewModel);
         }
 
         //

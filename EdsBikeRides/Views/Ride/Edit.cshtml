@@ -1,4 +1,4 @@
-﻿@model EdsBikeRides.Models.Ride
+﻿@model EdsBikeRides.ViewModels.RideViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -12,24 +12,31 @@
     <fieldset>
         <legend>Ride</legend>
 
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Ride.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.RideDate)
+            @Html.LabelFor(model => model.Ride.RideDate)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.RideDate)
-            @Html.ValidationMessageFor(model => model.RideDate)
+            @Html.EditorFor(model => model.Ride.RideDate)
+            @Html.ValidationMessageFor(model => model.Ride.RideDate)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.Ride.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.EditorFor(model => model.Ride.Name)
+            @Html.ValidationMessageFor(model => model.Ride.Name)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ride.Bike.Name)
+        </div>        
+         <div class="editor-field"> 
+            @Html.DropDownListFor(model => model.Ride.Bike.Id, Model.Bikes)
+            @Html.ValidationMessageFor(model => model.Ride.Bike.Name)
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>
