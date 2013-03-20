@@ -6,19 +6,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EdsBikeRides.Models;
+using EdsBikeRides.Repositories;
+using EdsBikeRides.Repositories.Interfaces;
 
 namespace EdsBikeRides.Controllers
 {
     public class BikeController : Controller
     {
-        private DataContext db = new DataContext();
+        IBikeRepository _bikeRepository = new BikeRepository(new DataContext());
 
         //
         // GET: /Bike/
 
         public ActionResult Index()
         {
-            return View(db.Bikes.ToList());
+            return View(_bikeRepository.GetAll());
         }
 
         //
@@ -26,7 +28,7 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Bike bike = db.Bikes.Find(id);
+            var bike = _bikeRepository.GetById(id);
             if (bike == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Bikes.Add(bike);
-                db.SaveChanges();
+                _bikeRepository.Add(bike);
                 return RedirectToAction("Index");
             }
 
@@ -63,7 +64,7 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Bike bike = db.Bikes.Find(id);
+            var bike = _bikeRepository.GetById(id);
             if (bike == null)
             {
                 return HttpNotFound();
@@ -79,8 +80,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bike).State = EntityState.Modified;
-                db.SaveChanges();
+                _bikeRepository.Update(bike);
                 return RedirectToAction("Index");
             }
             return View(bike);
@@ -91,7 +91,7 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Bike bike = db.Bikes.Find(id);
+            var bike = _bikeRepository.GetById(id);
             if (bike == null)
             {
                 return HttpNotFound();
@@ -105,16 +105,9 @@ namespace EdsBikeRides.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Bike bike = db.Bikes.Find(id);
-            db.Bikes.Remove(bike);
-            db.SaveChanges();
+            var bike = _bikeRepository.GetById(id);
+            _bikeRepository.Remove(bike);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

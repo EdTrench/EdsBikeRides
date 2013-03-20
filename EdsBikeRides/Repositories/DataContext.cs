@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
+using EdsBikeRides.Models;
 
-namespace EdsBikeRides.Models
+namespace EdsBikeRides.Repositories
 {
     public class DataContext : DbContext
     {

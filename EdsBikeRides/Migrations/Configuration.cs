@@ -5,14 +5,14 @@ namespace EdsBikeRides.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EdsBikeRides.Models.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EdsBikeRides.Repositories.DataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EdsBikeRides.Models.DataContext context)
+        protected override void Seed(EdsBikeRides.Repositories.DataContext context)
         {
             //  This method will be called after migrating to the latest version.
 

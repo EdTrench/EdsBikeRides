@@ -6,20 +6,28 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EdsBikeRides.Models;
+using EdsBikeRides.Repositories.Interfaces;
 using EdsBikeRides.ViewModels;
 
 namespace EdsBikeRides.Controllers
 {
     public class RideController : Controller
     {
-        private DataContext db = new DataContext();
+        IRideRepository _rideRepository;
+        IBikeRepository _bikeRepository;
+
+        public RideController(IRideRepository rideRepository, IBikeRepository bikeRepository)
+        {
+            _rideRepository = rideRepository;
+            _bikeRepository = bikeRepository;
+        }
 
         //
         // GET: /Ride/
 
         public ActionResult Index()
         {
-            return View(db.Rides.ToList());
+            return View(_rideRepository.GetAll());
         }
 
         //
@@ -27,7 +35,7 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Ride ride = db.Rides.Find(id);
+            Ride ride = _rideRepository.GetById(id);
             if (ride == null)
             {
                 return HttpNotFound();
@@ -51,8 +59,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Rides.Add(ride);
-                db.SaveChanges();
+                _rideRepository.Add(ride);
                 return RedirectToAction("Index");
             }
 
@@ -65,9 +72,9 @@ namespace EdsBikeRides.Controllers
         public ActionResult Edit(int id = 0)
         {
             RideViewModel rideViewModel = new RideViewModel();
-            rideViewModel.Ride = db.Rides.Find(id);
+            rideViewModel.Ride = _rideRepository.GetById(id);
             IEnumerable<SelectListItem> selectList =
-                from bikes in db.Bikes.ToList()
+                from bikes in _bikeRepository.GetAll()
                 select new SelectListItem
                 {
                     Selected = (bikes.Id == rideViewModel.Ride.Bike.Id),
@@ -91,8 +98,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ride).State = EntityState.Modified;
-                db.SaveChanges();
+                _rideRepository.Update(ride);
                 return RedirectToAction("Index");
             }
             return View(ride);
@@ -103,7 +109,7 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Ride ride = db.Rides.Find(id);
+            var ride =_rideRepository.GetById(id);
             if (ride == null)
             {
                 return HttpNotFound();
@@ -117,16 +123,9 @@ namespace EdsBikeRides.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ride ride = db.Rides.Find(id);
-            db.Rides.Remove(ride);
-            db.SaveChanges();
+            var ride = _rideRepository.GetById(id);
+            _rideRepository.Remove(ride);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

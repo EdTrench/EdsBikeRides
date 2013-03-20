@@ -181,8 +181,12 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Bike.cs" />
     <Compile Include="Models\Ride.cs" />
-    <Compile Include="Models\RideContext.cs" />
+    <Compile Include="Repositories\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BikeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBikeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRideRepository.cs" />
+    <Compile Include="Repositories\RideRepository.cs" />
     <Compile Include="ViewModels\RideViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
