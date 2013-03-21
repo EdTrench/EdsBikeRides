@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EdsBikeRides.Models;
+using EdsBikeRides.Repositories;
 using EdsBikeRides.Repositories.Interfaces;
 using EdsBikeRides.ViewModels;
 
@@ -13,13 +14,14 @@ namespace EdsBikeRides.Controllers
 {
     public class RideController : Controller
     {
-        IRideRepository _rideRepository;
-        IBikeRepository _bikeRepository;
+        private DataContext context = new DataContext();
+        RideRepository _rideRepository;
+        BikeRepository _bikeRepository;
 
-        public RideController(IRideRepository rideRepository, IBikeRepository bikeRepository)
+        public RideController()
         {
-            _rideRepository = rideRepository;
-            _bikeRepository = bikeRepository;
+            _rideRepository = new RideRepository(context as IUnitOfWork);
+            _bikeRepository = new BikeRepository(context as IUnitOfWork);
         }
 
         //

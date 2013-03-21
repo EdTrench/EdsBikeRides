@@ -22,6 +22,15 @@ namespace EdsBikeRides.Repositories
         public DbSet<Ride> Rides { get; set; }
         public DbSet<Bike> Bikes { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Ride>()
+            //    .HasRequired(r => r.Bike)
+            //    .WithMany(
+            //    ;
+
+        }
+
         public void Save()
         {
             SaveChanges();

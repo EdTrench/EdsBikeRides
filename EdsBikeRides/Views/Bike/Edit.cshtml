@@ -30,6 +30,13 @@
             @Html.ValidationMessageFor(model => model.BoughtDate)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Weight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Weight)
+            @Html.ValidationMessageFor(model => model.Weight)
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>

@@ -14,7 +14,9 @@ namespace EdsBikeRides.Repositories
         public BikeRepository(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null)
+            {
                 throw new ArgumentNullException("unitOfOwrk");
+            }
 
             _context = unitOfWork as DataContext;
         }

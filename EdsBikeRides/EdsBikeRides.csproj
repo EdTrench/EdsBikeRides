@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201303121632200_RideModel.Designer.cs">
       <DependentUpon>201303121632200_RideModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303211708129_Bike-Rides-Weight.cs" />
+    <Compile Include="Migrations\201303211708129_Bike-Rides-Weight.Designer.cs">
+      <DependentUpon>201303211708129_Bike-Rides-Weight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Bike.cs" />
@@ -326,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303121632200_RideModel.resx">
       <DependentUpon>201303121632200_RideModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303211708129_Bike-Rides-Weight.resx">
+      <DependentUpon>201303211708129_Bike-Rides-Weight.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
