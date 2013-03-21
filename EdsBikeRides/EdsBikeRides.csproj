@@ -186,6 +186,7 @@
     <Compile Include="Repositories\BikeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBikeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRideRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repositories\RideRepository.cs" />
     <Compile Include="ViewModels\RideViewModel.cs" />
   </ItemGroup>

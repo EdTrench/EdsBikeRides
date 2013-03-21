@@ -9,29 +9,32 @@ namespace EdsBikeRides.Repositories
 {
     public class BikeRepository : IBikeRepository
     {
-        DataContext _context = new DataContext();
+        private DataContext _context;
 
-        public BikeRepository(DataContext context)
+        public BikeRepository(IUnitOfWork unitOfWork)
         {
-            if (context == null)
-                throw new ArgumentNullException("context");
+            if (unitOfWork == null)
+                throw new ArgumentNullException("unitOfOwrk");
 
-            _context = context;
+            _context = unitOfWork as DataContext;
         }
 
         public void Add(Bike bike)
         {
            _context.Bikes.Add(bike);
+           _context.Save();
         }
 
         public void Update(Bike bike)
         {
-            throw new NotImplementedException();
+            _context.Entry(bike).State = System.Data.EntityState.Modified;
+            _context.Save();
         }
 
         public void Remove(Bike bike)
         {
             _context.Bikes.Remove(bike);
+            _context.Save();
         }
 
         public Bike GetById(int id)

@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
 using EdsBikeRides.Models;
+using EdsBikeRides.Repositories.Interfaces;
 
 namespace EdsBikeRides.Repositories
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext, IUnitOfWork
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -20,5 +21,11 @@ namespace EdsBikeRides.Repositories
 
         public DbSet<Ride> Rides { get; set; }
         public DbSet<Bike> Bikes { get; set; }
+
+        public void Save()
+        {
+            SaveChanges();
+        }  
+
     }
 }

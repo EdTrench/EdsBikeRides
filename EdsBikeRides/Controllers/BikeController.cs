@@ -13,7 +13,13 @@ namespace EdsBikeRides.Controllers
 {
     public class BikeController : Controller
     {
-        IBikeRepository _bikeRepository = new BikeRepository(new DataContext());
+        private DataContext context = new DataContext();
+        BikeRepository _bikeRepository;
+
+        public BikeController()
+        {
+             _bikeRepository = new BikeRepository(context as IUnitOfWork);
+        }
 
         //
         // GET: /Bike/
