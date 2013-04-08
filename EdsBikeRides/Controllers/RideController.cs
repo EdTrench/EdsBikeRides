@@ -75,6 +75,7 @@ namespace EdsBikeRides.Controllers
         {
             RideViewModel rideViewModel = new RideViewModel();
             rideViewModel.Ride = _rideRepository.GetById(id);
+
             IEnumerable<SelectListItem> selectList =
                 from bikes in _bikeRepository.GetAll()
                 select new SelectListItem
@@ -92,8 +93,7 @@ namespace EdsBikeRides.Controllers
             return View(rideViewModel);
         }
 
-        //
-        // POST: /Ride/Edit/5
+       //  POST: /Ride/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Ride ride)
@@ -106,7 +106,7 @@ namespace EdsBikeRides.Controllers
             return View(ride);
         }
 
-        //
+        
         // GET: /Ride/Delete/5
 
         public ActionResult Delete(int id = 0)

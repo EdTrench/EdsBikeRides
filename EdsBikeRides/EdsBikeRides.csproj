@@ -181,6 +181,18 @@
     <Compile Include="Migrations\201303211708129_Bike-Rides-Weight.Designer.cs">
       <DependentUpon>201303211708129_Bike-Rides-Weight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304081543216_test.cs" />
+    <Compile Include="Migrations\201304081543216_test.Designer.cs">
+      <DependentUpon>201304081543216_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304081546206_test1.cs" />
+    <Compile Include="Migrations\201304081546206_test1.Designer.cs">
+      <DependentUpon>201304081546206_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304081549052_test2.cs" />
+    <Compile Include="Migrations\201304081549052_test2.Designer.cs">
+      <DependentUpon>201304081549052_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Bike.cs" />
@@ -333,6 +345,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303211708129_Bike-Rides-Weight.resx">
       <DependentUpon>201303211708129_Bike-Rides-Weight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304081543216_test.resx">
+      <DependentUpon>201304081543216_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304081546206_test1.resx">
+      <DependentUpon>201304081546206_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304081549052_test2.resx">
+      <DependentUpon>201304081549052_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

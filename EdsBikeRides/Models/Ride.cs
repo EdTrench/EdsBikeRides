@@ -10,6 +10,8 @@ namespace EdsBikeRides.Models
         public int Id { get; set; }
         public DateTime RideDate { get; set; }
         public String Name { get; set; }
+
+        // Navigation property
         public virtual Bike Bike { get; set; }
     }
 }
