@@ -100,6 +100,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
+                ride.Bike = _bikeRepository.GetById(ride.Bike.Id);
                 _rideRepository.Update(ride);
                 return RedirectToAction("Index");
             }

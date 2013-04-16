@@ -24,11 +24,7 @@ namespace EdsBikeRides.Repositories
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Ride>()
-            //    .HasRequired(r => r.Bike)
-            //    .WithMany(
-            //    ;
-
+            modelBuilder.Entity<Ride>().HasRequired(e => e.Bike).WithMany(e => e.Rides);
         }
 
         public void Save()
