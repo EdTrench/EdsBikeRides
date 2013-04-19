@@ -11,8 +11,5 @@ namespace EdsBikeRides.Models
         public String Name { get; set; }
         public DateTime BoughtDate { get; set; }
         public float Weight { get; set; }
-
-        // Navigation property
-        public virtual ICollection<Ride> Rides { get; private set; }
     }
 }

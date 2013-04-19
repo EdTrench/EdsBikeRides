@@ -50,7 +50,19 @@ namespace EdsBikeRides.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            RideViewModel rideViewModel = new RideViewModel();
+
+            IEnumerable<SelectListItem> selectList =
+                from bikes in _bikeRepository.GetAll()
+                select new SelectListItem
+                {
+                    Text = bikes.Name,
+                    Value = bikes.Id.ToString()
+                };
+
+            rideViewModel.Bikes = selectList;
+
+            return View(rideViewModel);
         }
 
         //
@@ -61,6 +73,7 @@ namespace EdsBikeRides.Controllers
         {
             if (ModelState.IsValid)
             {
+                ride.Bike = _bikeRepository.GetById(ride.Bike.Id);
                 _rideRepository.Add(ride);
                 return RedirectToAction("Index");
             }
@@ -96,15 +109,15 @@ namespace EdsBikeRides.Controllers
        //  POST: /Ride/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Ride ride)
+        public ActionResult Edit(RideViewModel rideViewModel)
         {
             if (ModelState.IsValid)
             {
-                ride.Bike = _bikeRepository.GetById(ride.Bike.Id);
-                _rideRepository.Update(ride);
+                rideViewModel.Ride.Bike = _bikeRepository.GetById(rideViewModel.Ride.Bike.Id);
+                _rideRepository.Update(rideViewModel.Ride);
                 return RedirectToAction("Index");
             }
-            return View(ride);
+            return View(rideViewModel);
         }
 
         
