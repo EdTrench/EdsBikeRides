@@ -106,7 +106,7 @@ namespace EdsBikeRides.Controllers
             return View(rideViewModel);
         }
 
-       //  POST: /Ride/Edit/5
+        //  POST: /Ride/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Ride ride)
@@ -114,19 +114,18 @@ namespace EdsBikeRides.Controllers
             if (ModelState.IsValid)
             {
                 ride.BikeId = ride.Bike.Id;
-                //ride.Bike = _bikeRepository.GetById(ride.Bike.Id);
                 _rideRepository.Update(ride);
                 return RedirectToAction("Index");
             }
             return View(ride);
         }
 
-        
+
         // GET: /Ride/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            var ride =_rideRepository.GetById(id);
+            var ride = _rideRepository.GetById(id);
             if (ride == null)
             {
                 return HttpNotFound();
@@ -144,5 +143,34 @@ namespace EdsBikeRides.Controllers
             _rideRepository.Remove(ride);
             return RedirectToAction("Index");
         }
+
+        public ActionResult UploadFiles()
+        {
+            var r = new List<ViewDataUploadFilesResult>();
+
+            foreach (string file in Request.Files)
+            {
+                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                if (hpf.ContentLength == 0)
+                    continue;
+                string savedFileName = System.IO.Path.Combine(
+                   AppDomain.CurrentDomain.BaseDirectory,
+                   System.IO.Path.GetFileName(hpf.FileName));
+                hpf.SaveAs(savedFileName);
+
+                r.Add(new ViewDataUploadFilesResult()
+                {
+                    Name = savedFileName,
+                    Length = hpf.ContentLength
+                });
+            }
+            return View("UploadedFiles", r);
+        }
     }
+}
+
+public class ViewDataUploadFilesResult
+{
+    public string Name { get; set; }
+    public int Length { get; set; }
 }
