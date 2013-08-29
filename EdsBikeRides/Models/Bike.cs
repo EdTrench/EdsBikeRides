@@ -11,5 +11,7 @@ namespace EdsBikeRides.Models
         public String Name { get; set; }
         public DateTime BoughtDate { get; set; }
         public float Weight { get; set; }
+
+        public virtual List<Ride> Rides { get; set; }
     }
 }

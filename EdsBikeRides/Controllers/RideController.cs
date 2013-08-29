@@ -109,15 +109,16 @@ namespace EdsBikeRides.Controllers
        //  POST: /Ride/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(RideViewModel rideViewModel)
+        public ActionResult Edit(Ride ride)
         {
             if (ModelState.IsValid)
             {
-                rideViewModel.Ride.Bike = _bikeRepository.GetById(rideViewModel.Ride.Bike.Id);
-                _rideRepository.Update(rideViewModel.Ride);
+                ride.BikeId = ride.Bike.Id;
+                //ride.Bike = _bikeRepository.GetById(ride.Bike.Id);
+                _rideRepository.Update(ride);
                 return RedirectToAction("Index");
             }
-            return View(rideViewModel);
+            return View(ride);
         }
 
         

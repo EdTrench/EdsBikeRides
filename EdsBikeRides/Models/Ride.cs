@@ -12,6 +12,7 @@ namespace EdsBikeRides.Models
         public String Name { get; set; }
 
         // Navigation property
+        public int BikeId { get; set; }
         public virtual Bike Bike { get; set; }
     }
 }

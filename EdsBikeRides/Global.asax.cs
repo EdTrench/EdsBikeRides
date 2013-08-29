@@ -25,7 +25,6 @@ namespace EdsBikeRides
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            //System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<RideContext>());
         }
     }
 }
